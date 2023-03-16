@@ -130,7 +130,7 @@ function loginCheck(event) {
         let checker = (password.value == user.password) ? true : false;
         if (checker) {
             alert("Success!");
-            logIn.action = '/patientForm.html';
+            logIn.action = 'patientForm.html';
 
         } else {
             alert("Username and password did not match!");
