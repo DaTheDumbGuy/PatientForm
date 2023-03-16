@@ -1,0 +1,6 @@
+-Responsiveness
+-Date Limit
+-patientForm validation
+-Medication(yes) -> input should be registered
+-Overwrite the same name when registered(The key is the user, find other solution)
+Check for other bugs.
