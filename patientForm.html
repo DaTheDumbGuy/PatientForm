@@ -21,7 +21,15 @@
     </style>
   </head>
   <body class="text-bg-dark">
-    <header>
+    <header class="d-flex flex-column">
+      <a
+        type="button"
+        class="btn btn-danger align-self-end me-5 mt-5"
+        href="index.html"
+        onclick="alert('Log Out')"
+      >
+        Log out
+      </a>
       <h1 class="text-center">Title</h1>
     </header>
     <main class="container">
@@ -40,7 +48,6 @@
             name="fName"
             id="fName"
             class="form-control mb-3"
-            required
           />
           <!--  -->
           <label for="mName" class="form-label">Middle Name</label>
@@ -57,7 +64,6 @@
             name="lName"
             id="lName"
             class="form-control mb-3"
-            required
           />
           <!--  -->
           <div class="row row-cols-2">
@@ -69,18 +75,16 @@
                 name="address"
                 id="address"
                 class="form-control mb-3"
-                required
               />
             </div>
             <!--  -->
             <div class="col-4">
               <label for="mobileNumber" class="form-label">Mobile Number</label>
               <input
-                type="text"
+                type="number"
                 name="mobileNumber"
                 id="mobileNumber"
                 class="form-control mb-3"
-                required
               />
             </div>
             <div class="col-4">
@@ -90,7 +94,6 @@
                 name="birthDate"
                 id="birthDate"
                 class="form-control mb-3"
-                required
               />
             </div>
             <!--Gender  -->

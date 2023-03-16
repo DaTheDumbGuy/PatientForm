@@ -1,6 +1,6 @@
 -Responsiveness
--Date Limit
--patientForm validation
+-patientForm validation only has -> ["fName", "mName", "lName", "address", "mobileNumber", "birthDate"]
 -Medication(yes) -> input should be registered
 -Overwrite the same name when registered(The key is the user, find other solution)
+-Validation is a mess. 
 Check for other bugs.

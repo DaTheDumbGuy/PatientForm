@@ -1,3 +1,4 @@
+const patientForm = document.getElementById("patientForm");
 const retrieveData = document.getElementById("submit");
 const fName = document.getElementById("fName");
 const mName = document.getElementById("mName");
@@ -12,6 +13,142 @@ const medicationYes = document.getElementById("medicationYes");
 let storedPatientForm = localStorage.getItem('patientForms');
 let patientForms = storedPatientForm ? JSON.parse(storedPatientForm) : [];
 let medicalHistoryValues = [];
+
+class ValidateForm {
+    constructor(form, fields) {
+        this.form = form;
+        this.fields = fields;
+    }
+    initializeForm() {
+        this.validateOnInput();
+        this.validateOnSubmit();
+    }
+    validateOnInput() {
+        let selfForm = this;
+        this.fields.forEach(field => {
+            let input = document.querySelector(`#${field}`);
+            input.addEventListener("input", () => {
+                selfForm.validateFields(input)
+
+            })
+
+        });
+
+    }
+    validateFields(field) {
+
+        //FrogNald Approach
+        const valName = /^[a-zA-Z ]+$/;
+        const mobileNumber = /^(09)\d{9}$/;
+        switch (field.id) {
+            case "fName":
+                if (valName.test(field.value)) {
+                    if (field.classList.contains("border-danger")) {
+                        field.classList.remove("border-danger")
+                    }
+                    field.classList.add("border-success");
+                } else {
+                    if (field.classList.contains("border-success")) {
+                        field.classList.remove("border-success");
+                    }
+                    field.classList.add("border-danger");
+                }
+                break;
+            case "mName":
+                if (valName.test(field.value)) {
+                    if (field.classList.contains("border-danger")) {
+                        field.classList.remove("border-danger")
+                    }
+                    field.classList.add("border-success");
+                } else {
+                    if (field.classList.contains("border-success")) {
+                        field.classList.remove("border-success");
+                    }
+                    field.classList.add("border-danger");
+                }
+                break;
+            case "lName":
+                if (valName.test(field.value)) {
+                    if (field.classList.contains("border-danger")) {
+                        field.classList.remove("border-danger")
+                    }
+                    field.classList.add("border-success");
+                } else {
+                    if (field.classList.contains("border-success")) {
+                        field.classList.remove("border-success");
+                    }
+                    field.classList.add("border-danger");
+                }
+                break;
+            case "mobileNumber":
+                if (mobileNumber.test(field.value)) {
+                    if (field.classList.contains("border-danger")) {
+                        field.classList.remove("border-danger")
+                    }
+                    field.classList.add("border-success");
+                } else {
+                    if (field.classList.contains("border-success")) {
+                        field.classList.remove("border-success");
+                    }
+                    field.classList.add("border-danger");
+                }
+                break;
+            case "birthDate":
+                let date = new Date(field.valueAsNumber || field.value);
+                let maxDateString = "2004-01-01"; // Set maximum date to January 1, 2004
+                let maxDate = new Date(maxDateString);
+                console.log(date);
+                console.log(maxDate);
+                if (!isNaN(date.getTime()) && date <= maxDate) {
+                    if (field.classList.contains("border-danger")) {
+                        field.classList.remove("border-danger")
+                    }
+                    field.classList.add("border-success");
+                } else {
+                    if (field.classList.contains("border-success")) {
+                        field.classList.remove("border-success");
+                    }
+                    field.classList.add("border-danger");
+                }
+                break;
+
+            default:
+                if (field.value != "") {
+                    if (field.classList.contains("border-danger")) {
+                        field.classList.remove("border-danger")
+                    }
+                    field.classList.add("border-success");
+                } else {
+                    if (field.classList.contains("border-success")) {
+                        field.classList.remove("border-success");
+                    }
+                    field.classList.add("border-danger");
+                }
+                break;
+
+        }
+    }
+    validateOnSubmit() {
+        let selfForm = this;
+        this.form.addEventListener("submit", (event) => {
+            let isValid = true;
+            selfForm.fields.forEach(field => {
+                let input = document.querySelector(`#${field}`);
+                selfForm.validateFields(input);
+                if (input.classList.contains("border-danger")) {
+                    isValid = false;
+                }
+            })
+            if (!isValid) {
+                event.preventDefault(); // prevent form submission if validation failed
+            }
+        });
+    }
+
+}
+let patientFormField = ["fName", "mName", "lName", "address", "mobileNumber", "birthDate"];
+let validatePatientForm = new ValidateForm(patientForm, patientFormField);
+validatePatientForm.initializeForm();
 
 function showInput() {
     medicationYes.classList.remove("d-none");
